@@ -19,8 +19,12 @@ protocol Shape {
     var area: Double { get }
     
     var perimeter: Double { get }
-    
-    var sumOfBoth: Double { get }
+}
+
+extension Shape {
+    var sumOfBoth: Double {
+        return area + perimeter
+    }
 }
 
 struct Triangle: Shape {
@@ -44,10 +48,10 @@ struct Triangle: Shape {
     var perimeter: Double {
         return Double(firstEdgeLength + secondEdgeLength + thirdEdgeLength)
     }
-    
-    var sumOfBoth: Double {
-        return area + Double(perimeter)
-    }
+//    
+//    var sumOfBoth: Double {
+//        return area + Double(perimeter)
+//    }
     
     init(firstEdgeLength: Double, secondEdgeLength: Double, thirdEdgeLength: Double) throws {
         guard firstEdgeLength > 0 && secondEdgeLength > 0 && thirdEdgeLength > 0 else {
@@ -80,9 +84,9 @@ struct Rectangle: Shape {
         return ((length + width) * 2)
     }
     
-    var sumOfBoth: Double {
-        return area + (perimeter)
-    }
+//    var sumOfBoth: Double {
+//        return area + (perimeter)
+//    }
     
     init(length: Double, width: Double) throws {
         guard length > 0 && width > 0 else {
@@ -104,10 +108,10 @@ struct Circle: Shape {
     var perimeter: Double {
         return 2 * .pi * radius
     }
-    
-    var sumOfBoth: Double {
-        return area + perimeter
-    }
+//    
+//    var sumOfBoth: Double {
+//        return area + perimeter
+//    }
     
     init(radius: Double) throws{
         guard radius > 0 else {
@@ -132,7 +136,7 @@ func calculatePAndA(shapes: [Shape]) throws -> [(Double, Double, Double)] {
 }
 
 do {
-    print (try calculatePAndA(shapes: []))
+    print (try calculatePAndA(shapes: [Rectangle(length: 4.0, width: 5.0)]))
 } catch ShapeError.outOfShape {
     print("There is no shapes")
 } catch ShapeError.edgeLengthSmallerThanZero {
