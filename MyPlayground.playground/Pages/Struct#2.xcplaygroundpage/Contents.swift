@@ -97,7 +97,7 @@ struct Rectangle: Shape {
 struct Circle: Shape {
     var radius: Double
     
-    var area: ouble {
+    var area: Double {
         return .pi * pow(radius, 2)
     }
     
